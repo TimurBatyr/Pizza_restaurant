@@ -26,7 +26,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['yourdomain.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     'account',
     'main',
     'basket',
-
-
+    'payment',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -146,6 +146,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 BASKET_SESSION_ID = 'basket'
+
+# Stripe Payment
+PUBLISHABLE_KEY = 'pk_test_51KAr5hEav9tZXzYRgRW5ZaFwHGSlgDinJZZ5KNQtAjFWwgfnIVJmaUC3ULlbtMuze4sVQcDtXUYTABjGYotcv4JN00LwXkeV7c'
+SECRET_KEY = 'sk_test_51KAr5hEav9tZXzYRUsDwqcAeoWpjKxHmJpKvfmgnz3zv4WrHugc3LkED04abRDtDmcfL6qwKBLSDyG70kPWQzoEy002sbnhSdH'
+STRIPE_ENDPOINT_SECRET = 'whsec_vNhd3q6UeEenXQ7Oc827tiIDD9jwQpm4'
+# stripe listen --forward-to localhost:8000/payment/webhook/
 
 # Custom user model
 AUTH_USER_MODEL = 'account.UserBase'
