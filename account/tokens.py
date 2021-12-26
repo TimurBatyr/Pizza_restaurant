@@ -1,4 +1,3 @@
-# для генерации токенов, по ктр проверяется if user is valid
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from six import text_type
 

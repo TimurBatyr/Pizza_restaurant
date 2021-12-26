@@ -1,4 +1,4 @@
-{% extends "../main/base.html" %}
+{% extends "../base.html" %}
 {% load static %}
 {% block title %}Payment{% endblock %}
 {% block content %}
@@ -27,6 +27,7 @@
         <div class="container">
           <div class="row">
             <div id="payment-form" class="col-12 col-lg-6 mx-auto">
+
               <h3 class="mb-3">Billing address</h3>
               <!-- Error messages in this element -->
               <div id="card-errors" class="a" role="alert"></div>
@@ -48,7 +49,7 @@
                   </div>
                   <div class="col-12">
                     <label for="address" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="custAdd" placeholder="1234 Main St" required>
+                    <input type="text" class="form-control" id="custAdd" placeholder="Кочонун атын жаз" required>
                     <div class="invalid-feedback">
                       Please enter your shipping address.
                     </div>
@@ -56,23 +57,23 @@
                   <div class="col-12">
                     <label for="address2" class="form-label">Address 2 <span
                         class="text-muted">(Optional)</span></label>
-                    <input type="text" class="form-control" id="custAdd2" placeholder="Apartment or suite">
+                    <input type="text" class="form-control" id="custAdd2" placeholder="Жер-там же батир">
                   </div>
                   <div class="col-md-5">
                     <label for="country" class="form-label">Country</label>
                     <select class="form-select" id="country" required>
                       <option value="">Choose...</option>
-                      <option>United States</option>
+                      <option>Kyrgyz Republic</option>
                     </select>
                     <div class="invalid-feedback">
                       Please select a valid country.
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <label for="state" class="form-label">State</label>
+                    <label for="state" class="form-label">City</label>
                     <select class="form-select" id="state" required>
                       <option value="">Choose...</option>
-                      <option>California</option>
+                      <option>Asman)</option>
                     </select>
                     <div class="invalid-feedback">
                       Please provide a valid state.
