@@ -39,6 +39,23 @@
               <h1 class="mb-0 h2 pe-4 pb-4">{{ product.title }}</h1>
               <div class="bg-light"><img class="img-fluid mx-auto d-block" width="200px" alt="Responsive image"
                   src="{{ product.image.url }}"> </div>
+<br/>
+              <br/>
+              <h4> Comments...</h4>
+              <hr>
+              {% if not product.comments.all %}
+                No Comments Yet...<a href="#">Add one</a>
+              {% else %}
+                  {% for comment in product.comments.all %}
+                  <strong>{{ comment.name}} - {{ comment.date_added }}</strong>
+                <br/>
+                {{ comment.body }}
+              <br/><br/>
+                  {% endfor %}
+              {% endif%}
+
+
+
             </div>
           </div>
         </div>
