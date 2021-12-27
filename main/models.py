@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 
+
 class ProductManager(models.Manager):
     def get_queryset(self):
         return super(ProductManager, self).get_queryset().filter(available=True)
