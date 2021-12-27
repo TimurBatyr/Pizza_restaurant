@@ -31,11 +31,17 @@ def edit_details(request):
 
         if user_form.is_valid():
             user_form.save()
+            return redirect(reverse('account:dashboard'))
+        user_form = UserEditForm(instance=request.user)
+        return render(request,
+                      'account/dashboard/edit_details.html',
+                      {'user_form': user_form})
     else:
         user_form = UserEditForm(instance=request.user)
 
     return render(request,
-                  'account/dashboard/edit_details.html', {'user_form': user_form})
+                  'account/dashboard/edit_details.html',
+                  {'user_form': user_form})
 
 
 @login_required
