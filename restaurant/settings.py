@@ -152,9 +152,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 BASKET_SESSION_ID = 'basket'
 
 # Stripe Payment
-PUBLISHABLE_KEY = 'pk_test_51KAr5hEav9tZXzYRgRW5ZaFwHGSlgDinJZZ5KNQtAjFWwgfnIVJmaUC3ULlbtMuze4sVQcDtXUYTABjGYotcv4JN00LwXkeV7c'
-SECRET_KEY = 'sk_test_51KAr5hEav9tZXzYRUsDwqcAeoWpjKxHmJpKvfmgnz3zv4WrHugc3LkED04abRDtDmcfL6qwKBLSDyG70kPWQzoEy002sbnhSdH'
-STRIPE_ENDPOINT_SECRET = 'whsec_vNhd3q6UeEenXQ7Oc827tiIDD9jwQpm4'
+PUBLISHABLE_KEY = config('PK')
+SECRET_KEY = config('SK')
+STRIPE_ENDPOINT_SECRET = config('STRIPE_ENDPOINT_SECRET')
 # stripe listen --forward-to localhost:8000/payment/webhook/
 
 # Custom dashboard model
@@ -169,21 +169,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-
-# AUTHENTICATION_BACKENDS = (
-#     "django.contrib.auth.backends.ModelBackend",
-#     "allauth.account.auth_backends.AuthenticationBackend",
-# )
-
-
-# SITE_ID = 1
-# AUTHENTICATION_BACKENDS = (
-#     'social_core.backends.github.GithubOAuth2',
-#     # 'social_core.backends.twitter.TwitterOAuth',
-#     # 'social_core.backends.facebook.FacebookOAuth2',
-#
-#     'django.contrib.auth.backends.ModelBackend',
-# )
-
-# SOCIAL_AUTH_GITHUB_KEY = '6853cdbd3bb57e6afbd7'
-# SOCIAL_AUTH_GITHUB_SECRET = '9bceff52f1d99ec6aa365aaa280bd9ecf64f5cc1'
