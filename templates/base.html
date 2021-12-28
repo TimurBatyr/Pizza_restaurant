@@ -129,22 +129,24 @@
             <span class="fs15 fw500">Basket</span>
           </a>
         </div>
-        <div class="d-md-none d-lg-none d-xl-none">
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-              <li><a class="dropdown-item" href="{% url 'main:main_home' %}">All</a></li>
-              {% for c in categories %}
-              <li {% if category.slug == c.slug %}class="selected" {% endif %}>
-                <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.name|title }}</a>
-              </li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
+
+<!--        <div class="d-md-none d-lg-none d-xl-none">-->
+<!--          <div class="collapse navbar-collapse" id="navbarCollapse">-->
+<!--            <ul class="navbar-nav me-auto mb-2 mb-md-0">-->
+<!--              <li><a class="dropdown-item" href="{% url 'main:main_home' %}">All</a></li>-->
+<!--              {% for c in categories %}-->
+<!--              <li {% if category.slug == c.slug %}class="selected" {% endif %}>-->
+<!--                <a class="dropdown-item" href="{{ c.get_absolute_url }}">{{ c.name|title }}</a>-->
+<!--              </li>-->
+<!--              {% endfor %}-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--        </div>-->
 <!--        <form class="d-flex w-100 d-md-none">-->
 <!--          <input class="form-control me-2" type="search" placeholder="Search products or FAQ" aria-label="Search">-->
 <!--          <button class="btn btn-outline-secondary" type="submit">Search</button>-->
 <!--        </form>-->
+
       </div>
     </nav>
   </header>

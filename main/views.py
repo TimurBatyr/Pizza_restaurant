@@ -1,5 +1,6 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
+import django_filters
 from django.views import View
 from django.views.generic import ListView
 
@@ -35,3 +36,6 @@ class SearchResultsView(View):
         if search_param is not None:
             queryset = Product.objects.filter(Q(title__icontains=search_param) | Q(description__icontains=search_param))
         return render(request, 'main/search.html', {'products': queryset})
+
+
+
