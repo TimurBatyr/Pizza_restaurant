@@ -30,7 +30,6 @@ class UserAddressForm(forms.ModelForm):
         )
 
 
-
 class UserLoginForm(AuthenticationForm):
     # overwriting our form
     username = forms.CharField(widget=forms.TextInput(

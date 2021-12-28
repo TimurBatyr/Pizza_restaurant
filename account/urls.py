@@ -22,12 +22,12 @@ urlpatterns = [
                                                                  email_template_name='account/password_reset/password_reset_email.html',
                                                                  form_class=PwdResetForm), name='pwdreset'),
     path('password_reset_confirm/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(template_name='account/password_reset/password_reset_confirm.html',
-                                                                                                success_url='password_reset_complete/',
+                                                                                                success_url='/account/password_reset_complete/',
                                                                                                 form_class=PwdResetConfirmForm),
          name="password_reset_confirm"),
     path('password_reset/password_reset_email_confirm/',
          TemplateView.as_view(template_name="account/password_reset/reset_status.html"), name='password_reset_done'),
-    path('password_reset_confirm/Mg/password_reset_complete/',
+    path('password_reset_complete/',
          TemplateView.as_view(template_name="account/password_reset/reset_status.html"), name='password_reset_complete'),
     # User dashboard
     path('dashboard/', views.dashboard, name='dashboard'),
@@ -40,5 +40,4 @@ urlpatterns = [
     path("addresses/edit/<slug:id>/", views.edit_address, name="edit_address"),
     path("addresses/delete/<slug:id>/", views.delete_address, name="delete_address"),
     path("addresses/set_default/<slug:id>/", views.set_default, name="set_default"),
-
 ]

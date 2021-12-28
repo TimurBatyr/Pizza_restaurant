@@ -16,10 +16,6 @@ class ProductListView(ListView):
     context_object_name = 'products'
     paginate_by = 3
 
-# def product_all(request):
-#     products = Product.products.all()
-#     return render(request, 'main/index.html', {'products': products})
-
 
 def category_list(request, category_slug=None):
     category = get_object_or_404(Category, slug=category_slug)
@@ -80,7 +76,6 @@ class DeleteProductView(IsAdminCheckMixin, DeleteView):
 class AddCommentView(CreateView):
     model = Comment
     form_class = CommentForm
-    # fields = '__all__'
     template_name = 'main/add_comment.html'
 
     def form_valid(self, form):

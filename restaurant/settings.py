@@ -39,13 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_countries',
-    # 'social_django',
-    'django.contrib.sites',
-    'allauth',
-    # 'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.github',
-
 
     #ourapps
     'account',
@@ -64,7 +57,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'social_django.middleware.SocialAuthExceptionMiddleware',
+    # 'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'restaurant.urls'
@@ -84,8 +77,8 @@ TEMPLATES = [
                 'main.context_processors.categories',
                 'basket.context_processors.basket',
 
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
+                # 'social_django.context_processors.backends',
+                # 'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -177,13 +170,13 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
-AUTHENTICATION_BACKENDS = (
-    "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",
-)
+# AUTHENTICATION_BACKENDS = (
+#     "django.contrib.auth.backends.ModelBackend",
+#     "allauth.account.auth_backends.AuthenticationBackend",
+# )
 
 
-SITE_ID = 1
+# SITE_ID = 1
 # AUTHENTICATION_BACKENDS = (
 #     'social_core.backends.github.GithubOAuth2',
 #     # 'social_core.backends.twitter.TwitterOAuth',
@@ -192,5 +185,5 @@ SITE_ID = 1
 #     'django.contrib.auth.backends.ModelBackend',
 # )
 
-SOCIAL_AUTH_GITHUB_KEY = '6853cdbd3bb57e6afbd7'
-SOCIAL_AUTH_GITHUB_SECRET = '9bceff52f1d99ec6aa365aaa280bd9ecf64f5cc1'
+# SOCIAL_AUTH_GITHUB_KEY = '6853cdbd3bb57e6afbd7'
+# SOCIAL_AUTH_GITHUB_SECRET = '9bceff52f1d99ec6aa365aaa280bd9ecf64f5cc1'
