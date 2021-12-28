@@ -27,14 +27,17 @@
         <hr>
         <button type="button" id='add-button' value="{{product.id}}" class="btn btn-success fw500">Add to
           basket</button>
-<!--        <button type="button" id='add-button' value="{{product.id}}" class="btn btn-light fw500">Add to-->
-<!--          Favorites</button>-->
+          {%if request.user.is_superuser%}
+              <a href="{%url 'main:update' product.id%}"><button type="button" class="btn btn-secondary">Update</button></a>
+              <a href="{%url 'main:delete' product.id%}"><button type="button" class="btn btn-danger">Delete</button></a>
+              {%endif%}
       </div>
     </div>
     <div class="col-md-7 col-lg-7 p-0">
       <div class="card mb-3 border-0">
         <div class="row g-0">
           <div class="col-md-12">
+
             <div class="card-body p-1">
               <h1 class="mb-0 h2 pe-4 pb-4">{{ product.title }}</h1>
               <div class="bg-light"><img class="img-fluid mx-auto d-block" height="500px" width="500px" alt="Responsive image"

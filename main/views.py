@@ -1,9 +1,12 @@
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.db.models import Q
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 import django_filters
+from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
+from .forms import ProductForm, UpdateProductForm
 from .models import Category, Product
 
 
@@ -36,6 +39,43 @@ class SearchResultsView(View):
         if search_param is not None:
             queryset = Product.objects.filter(Q(title__icontains=search_param) | Q(description__icontains=search_param))
         return render(request, 'main/search.html', {'products': queryset})
+
+
+class IsAdminCheckMixin(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_authenticated and self.request.user.is_superuser
+
+
+class ProductCreateView(IsAdminCheckMixin, CreateView):
+    model = Product
+    template_name = 'main/create_meal.html'
+    form_class = ProductForm
+    success_url = reverse_lazy('main:main_home')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product_form'] = self.get_form(self.get_form_class())
+        return context
+
+
+class ProductUpdateView(IsAdminCheckMixin, UpdateView):
+    model = Product
+    template_name = 'main/update.html'
+    form_class = UpdateProductForm
+    pk_url_kwarg = 'product_id'
+    success_url = reverse_lazy('main:main_home')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product_form'] = self.get_form(self.get_form_class())
+        return context
+
+
+class DeleteProductView(IsAdminCheckMixin, DeleteView):
+    queryset = Product.objects.all()
+    template_name = 'main/delete_product.html'
+    success_url = reverse_lazy('main:main_home')
+
 
 
 
