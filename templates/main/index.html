@@ -2,13 +2,13 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-
 <div class="container">
   <div class="container">
     <div class="row">
       <div class="album py-5">
         <div class="pb-3">
-          <h1 class="h3">Welcome to La Famiglia!</h1>
+          <h1 style="text-align:center; font-family:Gill Sans;" class="h3">Welcome to La Famiglia!</h1><br>
+          <h3 style="text-align:center; font-family:Gill Sans;" >Family sized pizzas for your loved ones</h3>
         </div>
         <div style="margin:10px;">
 {% if request.user.is_superuser %}
@@ -50,5 +50,5 @@
     {% endif %}
 </div>
   </div>
-
+</div>
   {% endblock %}

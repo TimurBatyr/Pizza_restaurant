@@ -25,7 +25,8 @@ urlpatterns = [
     path('account/', include('account.urls', namespace='account')),
     path('payment/', include('payment.urls', namespace='payment')),
     path('orders/', include('orders.urls', namespace='orders')),
-
+    path('accounts/', include('allauth.urls')),
+    # path('oauth/', include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:
