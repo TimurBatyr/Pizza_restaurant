@@ -55,8 +55,8 @@ class Basket():
     def get_total_price(self):
         return sum(Decimal(item['price']) * item['qty'] for item in self.basket.values())
 
-    def get_product(self, id):
-        pass
+    # def get_product(self, id):
+    #     pass
 
     def delete(self, product):
         product_id = str(product)

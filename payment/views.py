@@ -19,57 +19,57 @@ def order_placed(request):
 class Error(TemplateView):
     template_name = 'payment/error.html'
 
-@login_required
-def BasketView(request, pk=None):
-
-    basket = Basket(request)
-    product = basket.get_product(id=pk)
-    total = str(basket.get_total_price())
-    total = total.replace('.', '')
-    total = int(total)
-
-    stripe.api_key = 'sk_test_51KAr5hEav9tZXzYRUsDwqcAeoWpjKxHmJpKvfmgnz3zv4WrHugc3LkED04abRDtDmcfL6qwKBLSDyG70kPWQzoEy002sbnhSdH'
-    checkout_session = stripe.checkout.Session.create(
-        line_items=[
-            {
-                'price_data': {
-                    'currency': 'usd',
-                    'product_data': {
-                        'name': f'{product.title}',
-                        'images': ['https://cms.hugofox.com//resources/images/a0fea022-8ec7-4a37-b4e7-214846e7656f.jpg'],
-                    },
-                    'unit_amount': total * 100,
-                },
-                'quantity': 1,
-            },
-        ],
-        payment_method_types=["card"],
-        mode="payment",
-        success_url='http://localhost:8000/payment/orderplaced.html',
-        cancel_url="http://localhost:8000/payment/error.html",
-    )
-    intent_id = checkout_session.payment_intent
-    intent = stripe.PaymentIntent.retrieve(intent_id)
-    return render(request, checkout_session.url, {'client_secret': intent.client_secret})
-
-
-
 # @login_required
-# def BasketView(request):
+# def BasketView(request, pk=None):
 #
 #     basket = Basket(request)
+#     product = basket.get_product(id=pk)
 #     total = str(basket.get_total_price())
 #     total = total.replace('.', '')
 #     total = int(total)
 #
 #     stripe.api_key = 'sk_test_51KAr5hEav9tZXzYRUsDwqcAeoWpjKxHmJpKvfmgnz3zv4WrHugc3LkED04abRDtDmcfL6qwKBLSDyG70kPWQzoEy002sbnhSdH'
-#     intent = stripe.PaymentIntent.create(
-#         amount=total,
-#         currency='usd',
-#         metadata={'userid': request.user.id}
+#     checkout_session = stripe.checkout.Session.create(
+#         line_items=[
+#             {
+#                 'price_data': {
+#                     'currency': 'usd',
+#                     'product_data': {
+#                         'name': f'{product.title}',
+#                         'images': ['https://cms.hugofox.com//resources/images/a0fea022-8ec7-4a37-b4e7-214846e7656f.jpg'],
+#                     },
+#                     'unit_amount': total * 100,
+#                 },
+#                 'quantity': 1,
+#             },
+#         ],
+#         payment_method_types=["card"],
+#         mode="payment",
+#         success_url='http://localhost:8000/payment/orderplaced',
+#         cancel_url="http://localhost:8000/payment/error",
 #     )
-#
-#     return render(request, 'payment/home.html', {'client_secret': intent.client_secret})
+#     intent_id = checkout_session.payment_intent
+#     intent = stripe.PaymentIntent.retrieve(intent_id)
+#     return render(request, checkout_session.url, {'client_secret': intent.client_secret})
+
+
+
+@login_required
+def BasketView(request):
+
+    basket = Basket(request)
+    total = str(basket.get_total_price())
+    total = total.replace('.', '')
+    total = int(total)
+
+    stripe.api_key = 'sk_test_51KAr5hEav9tZXzYRUsDwqcAeoWpjKxHmJpKvfmgnz3zv4WrHugc3LkED04abRDtDmcfL6qwKBLSDyG70kPWQzoEy002sbnhSdH'
+    intent = stripe.PaymentIntent.create(
+        amount=total,
+        currency='usd',
+        metadata={'userid': request.user.id}
+    )
+
+    return render(request, 'payment/home.html', {'client_secret': intent.client_secret})
 
 
 @csrf_exempt
