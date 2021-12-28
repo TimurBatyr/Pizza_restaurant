@@ -27,10 +27,21 @@
             </div>
           </div>
           {% endfor %}
+
         </div>
         {% endif %}
       </div>
     </div>
+    <div>
+    {% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}"><button type="button" class="btn btn-light">previous</button></a>
+    {% endif%}
+    {{ page_obj.number }}
+
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}"><button type="button" class="btn btn-light">next</button></a>
+    {% endif %}
+</div>
   </div>
 
   {% endblock %}

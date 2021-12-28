@@ -1,13 +1,20 @@
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
 from django.views import View
+from django.views.generic import ListView
 
 from .models import Category, Product
 
 
-def product_all(request):
-    products = Product.products.all()
-    return render(request, 'main/index.html', {'products': products})
+class ProductListView(ListView):
+    queryset = Product.objects.all()
+    template_name = 'main/index.html'
+    context_object_name = 'products'
+    paginate_by = 3
+
+# def product_all(request):
+#     products = Product.products.all()
+#     return render(request, 'main/index.html', {'products': products})
 
 
 def category_list(request, category_slug=None):
