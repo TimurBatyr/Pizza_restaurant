@@ -6,8 +6,8 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from .forms import ProductForm, UpdateProductForm
-from .models import Category, Product
+from .forms import ProductForm, UpdateProductForm, CommentForm
+from .models import Category, Product, Comment
 
 
 class ProductListView(ListView):
@@ -77,5 +77,14 @@ class DeleteProductView(IsAdminCheckMixin, DeleteView):
     success_url = reverse_lazy('main:main_home')
 
 
+class AddCommentView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    # fields = '__all__'
+    template_name = 'main/add_comment.html'
 
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['product_id']
+        return super().form_valid(form)
+    success_url = reverse_lazy('main:main_home')
 

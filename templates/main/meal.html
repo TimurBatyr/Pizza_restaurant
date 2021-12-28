@@ -44,13 +44,13 @@
                   src="{{ product.image.url }}"> </div>
 <br/>
               <br/>
-              <h4> Comments...</h4>
+              <h3>Reviews</h3>
               <hr>
               {% if not product.comments.all %}
-                No Comments Yet...<a href="#">Add one</a>
+                No Comments Yet...<a href="{% url 'main:add_comment' product.id %}">Add one</a>
               {% else %}
                   {% for comment in product.comments.all %}
-                  <strong>{{ comment.name}} - {{ comment.date_added }}</strong>
+                  <strong>{{ comment.name}}: {{ comment.created }}</strong>
                 <br/>
                 {{ comment.body }}
               <br/><br/>

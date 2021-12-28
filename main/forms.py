@@ -1,6 +1,6 @@
 from django import forms
-
-from .models import Product
+from django.forms import widgets
+from .models import Product, Comment
 
 
 class ProductForm(forms.ModelForm):
@@ -14,3 +14,14 @@ class UpdateProductForm(forms.ModelForm):
         model = Product
         fields = '__all__'
 
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'email', 'body')
+
+    widgets = {
+        'name': forms.TextInput(attrs={'class': 'form-control'}),
+        'email': forms.TextInput(attrs={'class': 'form-control'}),
+        'body': forms.Textarea(attrs={'class': 'form-control'}),
+    }

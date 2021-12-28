@@ -8,7 +8,6 @@ from django.utils.translation import gettext_lazy as _
 from django_countries.fields import CountryField
 
 
-
 class CustomAccountManager(BaseUserManager):
 
     def create_superuser(self, email, user_name, password, **other_fields):
@@ -82,10 +81,6 @@ class UserBase(AbstractBaseUser, PermissionsMixin):
 
 
 class Address(models.Model):
-    """
-    Address
-    """
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     customer = models.ForeignKey(UserBase, verbose_name=_("UserBase"), on_delete=models.CASCADE)
     full_name = models.CharField(_("Full Name"), max_length=150)

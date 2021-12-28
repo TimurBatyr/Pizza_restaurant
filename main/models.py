@@ -49,13 +49,22 @@ class Product(models.Model):
 
 
 class Comment(models.Model):
-    product = models.ForeignKey(Product, related_name='comments', on_delete=models.CASCADE)
-    name = models.CharField(max_length=100)
-    body = models.TextField(blank=True)
-    date_added = models.DateTimeField(auto_now_add=True)
+    post = models.ForeignKey(Product,
+                             on_delete=models.CASCADE,
+                             related_name='comments')
+    name = models.CharField(max_length=80)
+    email = models.EmailField(default='someone@mail.com')
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ('created',)
 
     def __str__(self):
-        return f'{self.name}'
+        return 'Comment by {} on {}'.format(self.name, self.post)
+
 
 
 
