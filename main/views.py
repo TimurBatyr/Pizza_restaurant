@@ -1,6 +1,9 @@
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, render
+from django.views import View
 
 from .models import Category, Product
+
 
 def product_all(request):
     products = Product.products.all()
@@ -18,4 +21,10 @@ def product_detail(request, slug):
     return render(request, 'main/meal.html', {'product': product})
 
 
-#
+class SearchResultsView(View):
+    def get(self, request):
+        queryset = None
+        search_param = request.GET.get('search')
+        if search_param is not None:
+            queryset = Product.objects.filter(Q(title__icontains=search_param) | Q(description__icontains=search_param))
+        return render(request, 'main/search.html', {'products': queryset})

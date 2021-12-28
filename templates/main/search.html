@@ -1,0 +1,27 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block title %}
+Products
+{% endblock %}
+{% block content %}
+
+  {% if not products %}
+    <p style="margin:30px;">No results found.</p>
+  {% else %}
+
+    {% for prod in products %}
+            <div class="col" style="margin:40px;">
+              <div class="card border-0">
+                <img class="img-fluid" alt="Responsive image" width="300" height="300" src="{{ prod.image.url }}">
+                <div class="card-body px-0">
+                  <p class="card-text">
+                    <a class="text-dark text-decoration-none"
+                      href="{{ prod.get_absolute_url }}">{{ prod.title|slice:":50" }}...</a>
+                  </p>
+                  <div class="fw-bold">£{{prod.price}}</div>
+                </div>
+              </div>
+            </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}
